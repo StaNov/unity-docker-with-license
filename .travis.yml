@@ -5,6 +5,7 @@ env:
   - UNITY_VERSION=2019.2.7f2
 
 before_script:
+  - set -e
   - sed -i "s/UNITY_VERSION/${UNITY_VERSION}/g" Dockerfile
 
 script:
