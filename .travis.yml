@@ -1,0 +1,12 @@
+services:
+  - docker
+
+env:
+  - UNITY_VERSION=2019.2.7f2
+
+script:
+  - sed -i "s/UNITY_VERSION/${UNITY_VERSION}/g" Dockerfile
+  - docker build -t unity .
+  - echo $DOCKER_HUB_PASSWORD | docker login --username stanov --password-stdin
+  - docker tag unity stanov/unity:$UNITY_VERSION
+  - docker push stanov/unity:$UNITY_VERSION
