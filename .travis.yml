@@ -10,6 +10,6 @@ before_script:
 
 script:
   - docker build -t unity .
-  - echo $DOCKER_HUB_PASSWORD | docker login --username stanov --password-stdin
-  - docker tag unity stanov/unity:$UNITY_VERSION
-  - docker push stanov/unity:$UNITY_VERSION
+  - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
+  - docker tag unity ${DOCKER_HUB_USERNAME}/unity:$UNITY_VERSION
+  - docker push ${DOCKER_HUB_USERNAME}/unity:$UNITY_VERSION
