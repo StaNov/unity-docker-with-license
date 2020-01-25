@@ -6,10 +6,8 @@ env:
 
 before_script:
   - set -e
-  - sed -i "s/UNITY_VERSION/${UNITY_VERSION}/g" Dockerfile
 
 script:
-  - docker build -t unity .
-  - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
-  - docker tag unity ${DOCKER_HUB_USERNAME}/unity:$UNITY_VERSION
-  - docker push ${DOCKER_HUB_USERNAME}/unity:$UNITY_VERSION
+  - docker build --build-arg UNITY_VERSION=$UNITY_VERSION -t stanov/unity:$UNITY_VERSION .
+  - echo $DOCKER_HUB_PASSWORD | docker login --username stanov --password-stdin
+  - docker push stanov/unity:$UNITY_VERSION
